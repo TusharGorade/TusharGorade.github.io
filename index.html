@@ -1,1 +1,673 @@
-<h1>sample change</h1>
+
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#176c57">
+	<title>Shalarth ID Generation | Applicant Form</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+	<style>
+		:root {
+			color-scheme: light;
+			--ink: #1d302d;
+			--muted: #657570;
+			--line: #dce5e1;
+			--paper: #ffffff;
+			--wash: #f2f6f3;
+			--green: #176c57;
+			--green-dark: #10513f;
+			--green-pale: #e8f3ed;
+			--amber: #bf7a2c;
+			--danger: #a63d37;
+			font-family: "DM Sans", sans-serif;
+			color: var(--ink);
+			background: var(--wash);
+		}
+
+		* { box-sizing: border-box; }
+
+		body {
+			min-width: 320px;
+			margin: 0;
+			background:
+				linear-gradient(120deg, rgba(23, 108, 87, .055), transparent 38%),
+				repeating-linear-gradient(0deg, transparent 0 39px, rgba(36, 76, 63, .025) 39px 40px),
+				var(--wash);
+		}
+
+		.masthead {
+			color: #f6fbf7;
+			background: var(--green-dark);
+			border-bottom: 4px solid var(--amber);
+		}
+
+		.masthead-inner, main, .actions-inner {
+			width: min(100% - 40px, 1040px);
+			margin-inline: auto;
+		}
+
+		.masthead-inner {
+			min-height: 112px;
+			display: flex;
+			align-items: center;
+			gap: 18px;
+			padding-block: 20px;
+		}
+
+		.seal {
+			width: 54px;
+			height: 54px;
+			flex: 0 0 54px;
+			display: grid;
+			place-items: center;
+			border: 1px solid rgba(255, 255, 255, .55);
+			border-radius: 50%;
+			color: #f0c983;
+			font: 800 17px "Manrope", sans-serif;
+			letter-spacing: 0;
+		}
+
+		.department {
+			margin: 0 0 6px;
+			color: #d5e8df;
+			font-size: 12px;
+			font-weight: 700;
+			letter-spacing: 0;
+			text-transform: uppercase;
+		}
+
+		.masthead h1 {
+			margin: 0;
+			font: 700 22px/1.2 "Manrope", sans-serif;
+			letter-spacing: 0;
+		}
+
+		main { padding-block: 34px 44px; }
+
+		.intro {
+			display: flex;
+			align-items: end;
+			justify-content: space-between;
+			gap: 20px;
+			margin-bottom: 26px;
+		}
+
+		.eyebrow {
+			margin: 0 0 7px;
+			color: var(--green);
+			font-size: 12px;
+			font-weight: 700;
+			letter-spacing: 0;
+			text-transform: uppercase;
+		}
+
+		.intro h2 {
+			margin: 0;
+			font: 700 27px/1.2 "Manrope", sans-serif;
+			letter-spacing: 0;
+		}
+
+		.required-note { margin: 0; color: var(--muted); font-size: 13px; }
+		.required-note span { color: var(--danger); font-weight: 700; }
+
+		form {
+			padding: 8px 30px 28px;
+			background: var(--paper);
+			border: 1px solid var(--line);
+			border-top: 3px solid var(--green);
+			box-shadow: 0 14px 35px rgba(27, 54, 45, .06);
+		}
+
+		.form-section { padding-top: 24px; }
+
+		.form-section + .form-section {
+			margin-top: 25px;
+			border-top: 1px solid var(--line);
+		}
+
+		.section-heading {
+			display: flex;
+			align-items: baseline;
+			gap: 12px;
+			margin: 0 0 18px;
+		}
+
+		.section-number {
+			color: var(--amber);
+			font: 800 13px "Manrope", sans-serif;
+		}
+
+		h3 {
+			margin: 0;
+			color: var(--green-dark);
+			font: 700 17px "Manrope", sans-serif;
+			letter-spacing: 0;
+		}
+
+		.field-grid {
+			display: grid;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			column-gap: 24px;
+			row-gap: 17px;
+		}
+
+		.field { min-width: 0; }
+		.field.wide { grid-column: 1 / -1; }
+
+		label {
+			display: block;
+			margin-bottom: 6px;
+			color: #344944;
+			font-size: 13px;
+			font-weight: 600;
+		}
+
+		label .required { color: var(--danger); }
+
+		input, select, textarea {
+			width: 100%;
+			min-height: 42px;
+			padding: 10px 12px;
+			color: var(--ink);
+			background: #fff;
+			border: 1px solid #cbd8d2;
+			border-radius: 3px;
+			font: 400 14px "DM Sans", sans-serif;
+			letter-spacing: 0;
+			transition: border-color .16s ease, box-shadow .16s ease;
+		}
+
+		textarea { min-height: 76px; resize: vertical; }
+		input::placeholder, textarea::placeholder { color: #8a9993; }
+
+		input:focus, select:focus, textarea:focus {
+			outline: none;
+			border-color: var(--green);
+			box-shadow: 0 0 0 3px rgba(23, 108, 87, .13);
+		}
+
+		.actions {
+			position: sticky;
+			bottom: 0;
+			z-index: 2;
+			background: rgba(242, 246, 243, .96);
+			border-top: 1px solid var(--line);
+			backdrop-filter: blur(10px);
+		}
+
+		.actions-inner {
+			min-height: 76px;
+			display: flex;
+			align-items: center;
+			justify-content: flex-end;
+			gap: 12px;
+		}
+
+		button {
+			min-height: 42px;
+			padding: 0 18px;
+			border: 1px solid transparent;
+			border-radius: 3px;
+			font: 700 14px "DM Sans", sans-serif;
+			cursor: pointer;
+		}
+
+		.clear-button { color: var(--muted); background: transparent; border-color: #cbd8d2; }
+		.download-button { color: white; background: var(--green); }
+		.download-button:hover { background: var(--green-dark); }
+		.clear-button:hover { color: var(--ink); background: white; }
+
+		.form-status {
+			margin: 0 auto 0 0;
+			color: var(--muted);
+			font-size: 13px;
+		}
+
+		@media (max-width: 640px) {
+			.masthead-inner, main, .actions-inner { width: min(100% - 28px, 1040px); }
+			.masthead-inner { min-height: 96px; gap: 12px; }
+			.seal { width: 44px; height: 44px; flex-basis: 44px; font-size: 14px; }
+			.department { font-size: 10px; }
+			.masthead h1 { font-size: 18px; }
+			main { padding-block: 25px 32px; }
+			.intro { align-items: start; flex-direction: column; gap: 10px; }
+			.intro h2 { font-size: 23px; }
+			form { padding: 6px 16px 22px; }
+			.field-grid { grid-template-columns: 1fr; row-gap: 14px; }
+			.field.wide { grid-column: auto; }
+			.form-section { padding-top: 20px; }
+			.actions-inner { min-height: 68px; gap: 8px; }
+			.form-status { display: none; }
+			button { padding-inline: 12px; }
+		}
+	</style>
+</head>
+<body>
+	<header class="masthead">
+		<div class="masthead-inner">
+			<div class="seal" aria-hidden="true">MH</div>
+			<div>
+				<p class="department">Government of Maharashtra · School Education and Sports Department</p>
+				<h1>Pavitra · Teacher Recruitment 2026</h1>
+			</div>
+		</div>
+	</header>
+
+	<main>
+		<div class="intro">
+			<div>
+				<p class="eyebrow">Applicant information</p>
+				<h2>Shalarth ID Generation</h2>
+			</div>
+			<p class="required-note"><span>*</span> Required fields</p>
+		</div>
+
+		<form id="application-form">
+			<section class="form-section" data-section="Application">
+				<div class="section-heading"><span class="section-number">01</span><h3>Application</h3></div>
+				<div class="field-grid">
+					<div class="field">
+						<label for="interview-type">Select Interview Type <span class="required">*</span></label>
+						<select id="interview-type" name="Interview Type" required>
+							<option value="">Select</option><option>Without Interview</option><option>With Interview</option>
+						</select>
+					</div>
+					<div class="field">
+						<label for="round">Select Round <span class="required">*</span></label>
+						<select id="round" name="Round" required>
+							<option value="">Select</option><option>Phase I (Regular Round)</option><option>Phase II</option>
+						</select>
+					</div>
+					<div class="field wide">
+						<label for="applicant">Select Applicant <span class="required">*</span></label>
+						<input id="applicant" name="Applicant" type="text" autocomplete="name" required>
+					</div>
+				</div>
+			</section>
+
+			<section class="form-section" data-section="Applicant Details">
+				<div class="section-heading"><span class="section-number">02</span><h3>Applicant Details</h3></div>
+				<div class="field-grid">
+					<div class="field"><label for="udise">UDISE Code <span class="required">*</span></label><input id="udise" name="UDISE Code" type="text" inputmode="numeric" required></div>
+					<div class="field"><label for="ddo-code">Shalarth DDO Code <span class="required">*</span></label><input id="ddo-code" name="Shalarth DDO Code" type="text" required></div>
+					<div class="field wide"><label for="ddo-name">Shalarth DDO Code Name <span class="required">*</span></label><input id="ddo-name" name="Shalarth DDO Code Name" type="text" required></div>
+					<div class="field"><label for="salutation">Select Salutation <span class="required">*</span></label><select id="salutation" name="Salutation" required><option value="">Select</option><option>Mr.</option><option>Mrs.</option><option>Ms.</option><option>Dr.</option></select></div>
+					<div class="field"><label for="full-name">Full Name <span class="required">*</span></label><input id="full-name" name="Full Name" type="text" autocomplete="name" required></div>
+					<div class="field"><label for="aadhaar-name">Aadhaar Full Name <span class="required">*</span></label><input id="aadhaar-name" name="Aadhaar Full Name" type="text" required></div>
+					<div class="field"><label for="gender">Gender <span class="required">*</span></label><select id="gender" name="Gender" required><option value="">Select</option><option>Female</option><option>Male</option><option>Other</option></select></div>
+					<div class="field"><label for="birth-date">Date of Birth <span class="required">*</span></label><input id="birth-date" name="Date of Birth" type="date" required></div>
+					<div class="field"><label for="aadhaar-number">Aadhaar No. <span class="required">*</span></label><input id="aadhaar-number" name="Aadhaar No." type="text" inputmode="numeric" maxlength="12" pattern="[0-9]{12}" autocomplete="off" required></div>
+					<div class="field"><label for="parent-name">Father/Husband Name <span class="required">*</span></label><input id="parent-name" name="Father/Husband Name" type="text" required></div>
+					<div class="field"><label for="marital-status">Marital Status <span class="required">*</span></label><select id="marital-status" name="Marital Status" required><option value="">Select</option><option>Single</option><option>Married</option><option>Widowed</option><option>Divorced</option></select></div>
+					<div class="field"><label for="disability">Physically Disability <span class="required">*</span></label><select id="disability" name="Physically Disability" required><option value="">Select</option><option>No</option><option>Yes</option></select></div>
+				</div>
+			</section>
+
+			<section class="form-section" data-section="Address and Contact">
+				<div class="section-heading"><span class="section-number">03</span><h3>Address and Contact</h3></div>
+				<div class="field-grid">
+					<div class="field"><label for="state">State <span class="required">*</span></label><input id="state" name="State" type="text" value="Maharashtra" required></div>
+					<div class="field"><label for="district">District <span class="required">*</span></label><input id="district" name="District" type="text" required></div>
+					<div class="field wide"><label for="address-one">Address Line 1 <span class="required">*</span></label><input id="address-one" name="Address Line 1" type="text" autocomplete="address-line1" required></div>
+					<div class="field wide"><label for="address-two">Address Line 2</label><input id="address-two" name="Address Line 2" type="text" autocomplete="address-line2"></div>
+					<div class="field"><label for="landmark">Landmark <span class="required">*</span></label><input id="landmark" name="Landmark" type="text" required></div>
+					<div class="field"><label for="taluka">Taluka <span class="required">*</span></label><input id="taluka" name="Taluka" type="text" required></div>
+					<div class="field"><label for="village">Village / At-Post <span class="required">*</span></label><input id="village" name="Village / At-Post" type="text" required></div>
+					<div class="field"><label for="pin-code">Pin Code <span class="required">*</span></label><input id="pin-code" name="Pin Code" type="text" inputmode="numeric" maxlength="6" pattern="[0-9]{6}" autocomplete="postal-code" required></div>
+					<div class="field"><label for="mobile">Mobile Number <span class="required">*</span></label><input id="mobile" name="Mobile Number" type="tel" inputmode="tel" autocomplete="tel" required></div>
+					<div class="field"><label for="alternate-number">Alt. No.</label><input id="alternate-number" name="Alternate Number" type="tel" inputmode="tel"></div>
+					<div class="field"><label for="email">E-Mail Id <span class="required">*</span></label><input id="email" name="E-Mail Id" type="email" autocomplete="email" required></div>
+					<div class="field"><label for="pan">PAN No. <span class="required">*</span></label><input id="pan" name="PAN No." type="text" maxlength="10" autocomplete="off" required></div>
+				</div>
+			</section>
+
+			<section class="form-section" data-section="Appointment Details">
+				<div class="section-heading"><span class="section-number">04</span><h3>Appointment Details</h3></div>
+				<div class="field-grid">
+					<div class="field"><label for="cadre">Cadre <span class="required">*</span></label><input id="cadre" name="Cadre" type="text" required></div>
+					<div class="field"><label for="designation">Designation <span class="required">*</span></label><input id="designation" name="Designation" type="text" required></div>
+					<div class="field"><label for="pay-scale">Pay Scale <span class="required">*</span></label><input id="pay-scale" name="Pay Scale" type="text" required></div>
+					<div class="field"><label for="pay-commission">Pay Commission</label><input id="pay-commission" name="Pay Commission" type="text"></div>
+					<div class="field"><label for="basic-pay">Basic Pay / Consolidated Pay</label><input id="basic-pay" name="Basic Pay / Consolidated Pay" type="text" inputmode="decimal"></div>
+					<div class="field"><label for="current-post">Current Post <span class="required">*</span></label><input id="current-post" name="Current Post" type="text" required></div>
+					<div class="field"><label for="joining-date">Date of Joining Current Post in Current Institute <span class="required">*</span></label><input id="joining-date" name="Date of Joining Current Post in Current Institute" type="date" required></div>
+					<div class="field"><label for="initial-appointment-date">Date of Initial Appointment in Present Institute <span class="required">*</span></label><input id="initial-appointment-date" name="Date of Initial Appointment in Present Institute" type="date" required></div>
+					<div class="field"><label for="employee-type">Type of Employee <span class="required">*</span></label><input id="employee-type" name="Type of Employee" type="text" required></div>
+					<div class="field"><label for="approval-date">Approval Date <span class="required">*</span></label><input id="approval-date" name="Approval Date" type="date" required></div>
+					<div class="field wide"><label for="approval-order">Approval Order No. <span class="required">*</span></label><input id="approval-order" name="Approval Order No." type="text" required></div>
+				</div>
+			</section>
+
+			<section class="form-section" data-section="Bank and Benefits">
+				<div class="section-heading"><span class="section-number">05</span><h3>Bank and Benefits</h3></div>
+				<div class="field-grid">
+					<div class="field"><label for="bank-name">Bank Name <span class="required">*</span></label><input id="bank-name" name="Bank Name" type="text" required></div>
+					<div class="field"><label for="bank-account">Bank A/c No. <span class="required">*</span></label><input id="bank-account" name="Bank A/c No." type="text" inputmode="numeric" required></div>
+					<div class="field"><label for="nps">Whether NPS Applicable? <span class="required">*</span></label><select id="nps" name="Whether NPS Applicable?" required><option value="">Select</option><option>Yes</option><option>No</option></select></div>
+					<div class="field"><label for="pf">PF A/c Maintained By</label><input id="pf" name="PF A/c Maintained By" type="text"></div>
+					<div class="field"><label for="gis">GIS Applicable <span class="required">*</span></label><select id="gis" name="GIS Applicable" required><option value="">Select</option><option>Yes</option><option>No</option></select></div>
+				</div>
+			</section>
+		</form>
+	</main>
+
+	<footer class="actions">
+		<div class="actions-inner">
+			<p id="form-status" class="form-status" role="status" aria-live="polite">Your information stays in this browser.</p>
+			<button class="clear-button" id="clear-form" type="button">Clear form</button>
+			<button class="download-button" id="download-pdf" type="button">Download PDF</button>
+		</div>
+	</footer>
+
+	<script>
+		const form = document.querySelector("#application-form");
+		const status = document.querySelector("#form-status");
+
+		function formatPdfValue(control) {
+			if (control instanceof HTMLSelectElement) {
+				return control.selectedOptions[0]?.textContent.trim() || "Not provided";
+			}
+
+			if (control.type === "date" && control.value) {
+				const [year, month, day] = control.value.split("-");
+				return `${day}/${month}/${year}`;
+			}
+
+			return control.value.trim() || "Not provided";
+		}
+
+		function downloadPdf() {
+			if (!form.reportValidity()) return;
+			const pageWidth = 1240;
+			const pageHeight = 1754;
+			const margin = 86;
+			const encoder = new TextEncoder();
+			const pages = [];
+			let page;
+			let y;
+
+			function createPage() {
+				const canvas = document.createElement("canvas");
+				canvas.width = pageWidth;
+				canvas.height = pageHeight;
+				const context = canvas.getContext("2d");
+				context.fillStyle = "#f2f6f3";
+				context.fillRect(0, 0, pageWidth, pageHeight);
+				context.fillStyle = "#10513f";
+				context.fillRect(0, 0, pageWidth, 138);
+				context.fillStyle = "#f0c983";
+				context.fillRect(0, 138, pageWidth, 5);
+				context.beginPath();
+				context.arc(118, 71, 31, 0, Math.PI * 2);
+				context.strokeStyle = "rgba(255, 255, 255, .55)";
+				context.lineWidth = 2;
+				context.stroke();
+				context.fillStyle = "#ffffff";
+				context.font = "800 19px Manrope, sans-serif";
+				context.textAlign = "center";
+				context.fillText("MH", 118, 78);
+				context.textAlign = "left";
+				context.fillStyle = "#d5e8df";
+				context.font = "700 14px 'DM Sans', sans-serif";
+				context.fillText("GOVERNMENT OF MAHARASHTRA - SCHOOL EDUCATION AND SPORTS DEPARTMENT", 170, 61);
+				context.fillStyle = "#f6fbf7";
+				context.font = "700 26px Manrope, sans-serif";
+				context.fillText("Pavitra - Teacher Recruitment 2026", 170, 96);
+				context.fillStyle = "#176c57";
+				context.font = "700 14px 'DM Sans', sans-serif";
+				context.fillText("APPLICANT INFORMATION", margin, 190);
+				context.fillStyle = "#1d302d";
+				context.font = "700 31px Manrope, sans-serif";
+				context.fillText("Shalarth ID Generation", margin, 231);
+				context.fillStyle = "#657570";
+				context.font = "400 15px 'DM Sans', sans-serif";
+				context.fillText("* Required fields", pageWidth - margin - 132, 229);
+				context.fillStyle = "#ffffff";
+				context.fillRect(margin, 260, pageWidth - margin * 2, pageHeight - 354);
+				context.strokeStyle = "#dce5e1";
+				context.lineWidth = 1;
+				context.strokeRect(margin, 260, pageWidth - margin * 2, pageHeight - 354);
+				context.fillStyle = "#176c57";
+				context.fillRect(margin, 260, pageWidth - margin * 2, 4);
+				pages.push(canvas);
+				y = 303;
+				return context;
+			}
+
+			function wrapText(context, value, maxWidth) {
+				const lines = [];
+				let line = "";
+
+				for (const word of String(value).split(/\s+/)) {
+					const candidate = line ? `${line} ${word}` : word;
+					if (context.measureText(candidate).width <= maxWidth) {
+						line = candidate;
+						continue;
+					}
+
+					if (line) lines.push(line);
+					line = "";
+					for (const character of word) {
+						const part = line + character;
+						if (context.measureText(part).width > maxWidth && line) {
+							lines.push(line);
+							line = character;
+						} else {
+							line = part;
+						}
+					}
+				}
+
+				if (line) lines.push(line);
+				return lines.length ? lines : [""];
+			}
+
+			function drawSectionHeading(context, section) {
+				if (y + 58 > pageHeight - 105) context = createPage();
+				context.fillStyle = "#bf7a2c";
+				context.font = "800 17px Manrope, sans-serif";
+				context.fillText(section.querySelector(".section-number").textContent, margin + 2, y);
+				context.fillStyle = "#10513f";
+				context.font = "700 22px Manrope, sans-serif";
+				context.fillText(section.querySelector("h3").textContent.trim(), margin + 35, y);
+				y += 25;
+				return context;
+			}
+
+			function fieldData(section, control, context, width) {
+				const labelElement = section.querySelector(`label[for="${control.id}"]`);
+				const label = labelElement.textContent.replace("*", "").trim();
+				context.font = "600 15px 'DM Sans', sans-serif";
+				const labelLines = wrapText(context, label, width);
+				context.font = "400 16px 'DM Sans', sans-serif";
+				const valueLines = wrapText(context, formatPdfValue(control), width - 22);
+				return {
+					control,
+					label,
+					labelLines,
+					valueLines,
+					boxHeight: Math.max(48, valueLines.length * 22 + 18),
+					wide: control.closest(".field").classList.contains("wide")
+				};
+			}
+
+			function makeFieldRows(fields, section, context, contentWidth, columnGap) {
+				const rows = [];
+				let row = [];
+				const columnWidth = (contentWidth - columnGap) / 2;
+
+				for (const control of fields) {
+					const field = fieldData(section, control, context, control.closest(".field").classList.contains("wide") ? contentWidth : columnWidth);
+					if (field.wide) {
+						if (row.length) rows.push(row);
+						rows.push([field]);
+						row = [];
+					} else {
+					row.push(field);
+					if (row.length === 2) {
+						rows.push(row);
+						row = [];
+					}
+				}
+				}
+				if (row.length) rows.push(row);
+				return { rows, columnWidth };
+			}
+
+			function drawField(context, field, x, width) {
+				context.font = "600 15px 'DM Sans', sans-serif";
+				context.fillStyle = "#344944";
+				field.labelLines.forEach((line, index) => context.fillText(line, x, y + index * 19));
+				if (field.control.required) {
+					const lastLabel = field.labelLines[field.labelLines.length - 1];
+					context.fillStyle = "#a63d37";
+					context.fillText("*", x + context.measureText(lastLabel).width + 4, y + (field.labelLines.length - 1) * 19);
+				}
+
+				const boxY = y + field.labelLines.length * 19 + 5;
+				context.fillStyle = "#ffffff";
+				context.strokeStyle = "#cbd8d2";
+				context.lineWidth = 1.5;
+				context.beginPath();
+				context.roundRect(x, boxY, width, field.boxHeight, 4);
+				context.fill();
+				context.stroke();
+				context.font = "400 16px 'DM Sans', sans-serif";
+				context.fillStyle = "#1d302d";
+				field.valueLines.forEach((line, index) => context.fillText(line, x + 12, boxY + 29 + index * 22));
+			}
+
+			let context = createPage();
+			for (const section of form.querySelectorAll(".form-section")) {
+				context = drawSectionHeading(context, section);
+				const contentWidth = pageWidth - margin * 2 - 72;
+				const columnGap = 26;
+				const { rows, columnWidth } = makeFieldRows(
+					section.querySelectorAll("input, select, textarea"),
+					section,
+					context,
+					contentWidth,
+					columnGap
+				);
+
+				for (const row of rows) {
+					const rowHeight = Math.max(...row.map(field => field.labelLines.length * 19 + 5 + field.boxHeight)) + 20;
+					if (y + rowHeight > pageHeight - 110) {
+						context = createPage();
+						context = drawSectionHeading(context, section);
+					}
+
+					row.forEach((field, index) => {
+						const width = field.wide ? contentWidth : columnWidth;
+						const x = margin + 36 + (field.wide ? 0 : index * (columnWidth + columnGap));
+						drawField(context, field, x, width);
+					});
+					y += rowHeight;
+				}
+				y += 12;
+			}
+
+			pages.forEach((canvas, index) => {
+				const footerContext = canvas.getContext("2d");
+				footerContext.strokeStyle = "#dce5e1";
+				footerContext.beginPath();
+				footerContext.moveTo(margin, pageHeight - 70);
+				footerContext.lineTo(pageWidth - margin, pageHeight - 70);
+				footerContext.stroke();
+				footerContext.fillStyle = "#657570";
+				footerContext.font = "400 18px 'DM Sans', sans-serif";
+				footerContext.fillText(`Shalarth ID Generation  |  Page ${index + 1} of ${pages.length}`, margin, pageHeight - 38);
+			});
+
+			function concatenate(parts) {
+				const totalLength = parts.reduce((total, part) => total + part.length, 0);
+				const output = new Uint8Array(totalLength);
+				let offset = 0;
+				for (const part of parts) {
+					output.set(part, offset);
+					offset += part.length;
+				}
+				return output;
+			}
+
+			function canvasJpeg(canvas) {
+				const encoded = canvas.toDataURL("image/jpeg", 0.92).split(",")[1];
+				const binary = atob(encoded);
+				const bytes = new Uint8Array(binary.length);
+				for (let index = 0; index < binary.length; index += 1) {
+					bytes[index] = binary.charCodeAt(index);
+				}
+				return bytes;
+			}
+
+			const objects = [];
+			objects[1] = encoder.encode("<< /Type /Catalog /Pages 2 0 R >>");
+			const pageReferences = pages.map((_, index) => `${3 + index * 3} 0 R`).join(" ");
+			objects[2] = encoder.encode(`<< /Type /Pages /Kids [${pageReferences}] /Count ${pages.length} >>`);
+
+			pages.forEach((canvas, index) => {
+				const pageObject = 3 + index * 3;
+				const contentObject = pageObject + 1;
+				const imageObject = pageObject + 2;
+				const jpeg = canvasJpeg(canvas);
+				const pageContent = encoder.encode("q\n595.28 0 0 841.89 0 0 cm\n/Im0 Do\nQ");
+				objects[pageObject] = encoder.encode(`<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /XObject << /Im0 ${imageObject} 0 R >> >> /Contents ${contentObject} 0 R >>`);
+				objects[contentObject] = concatenate([
+					encoder.encode(`<< /Length ${pageContent.length} >>\nstream\n`),
+					pageContent,
+					encoder.encode("\nendstream")
+				]);
+				objects[imageObject] = concatenate([
+					encoder.encode(`<< /Type /XObject /Subtype /Image /Width ${pageWidth} /Height ${pageHeight} /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length ${jpeg.length} >>\nstream\n`),
+					jpeg,
+					encoder.encode("\nendstream")
+				]);
+			});
+
+			const pdfParts = [encoder.encode("%PDF-1.4\n")];
+			const offsets = [0];
+			let byteOffset = pdfParts[0].length;
+			for (let index = 1; index < objects.length; index += 1) {
+				offsets[index] = byteOffset;
+				const object = concatenate([
+					encoder.encode(`${index} 0 obj\n`),
+					objects[index],
+					encoder.encode("\nendobj\n")
+				]);
+				pdfParts.push(object);
+				byteOffset += object.length;
+			}
+
+			const crossReferenceOffset = byteOffset;
+			let crossReference = `xref\n0 ${objects.length}\n0000000000 65535 f \n`;
+			for (let index = 1; index < objects.length; index += 1) {
+				crossReference += `${String(offsets[index]).padStart(10, "0")} 00000 n \n`;
+			}
+			crossReference += `trailer\n<< /Size ${objects.length} /Root 1 0 R >>\nstartxref\n${crossReferenceOffset}\n%%EOF`;
+			pdfParts.push(encoder.encode(crossReference));
+
+			const applicantName = form.elements.namedItem("Full Name").value.trim();
+			const fileSuffix = applicantName
+				? `-${applicantName.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`
+				: "";
+			const pdfBlob = new Blob(pdfParts, { type: "application/pdf" });
+			const downloadLink = document.createElement("a");
+			const pdfUrl = URL.createObjectURL(pdfBlob);
+			downloadLink.href = pdfUrl;
+			downloadLink.download = `shalarth-application${fileSuffix || "-applicant"}.pdf`;
+			downloadLink.click();
+			setTimeout(() => URL.revokeObjectURL(pdfUrl), 1000);
+			status.textContent = "Your PDF has been downloaded.";
+		}
+
+		document.querySelector("#download-pdf").addEventListener("click", downloadPdf);
+		document.querySelector("#clear-form").addEventListener("click", () => {
+			form.reset();
+			status.textContent = "The form has been cleared.";
+		});
+	</script>
+</body>
+</html>
